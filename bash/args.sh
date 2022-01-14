@@ -5,6 +5,13 @@
 
 PARAMS=""
 
+help_message() {
+  cat <<HELP
+Usage: 
+   args [OPTION] pos1 pos2
+HELP
+}
+
 while (( "$#" )); do
   case "$1" in
     -a|--my-boolean-flag)
@@ -21,19 +28,26 @@ while (( "$#" )); do
       fi
       ;;
     -h|--help)
-      echo "Help text here"
-      shift
+      help_message
+      exit 1
       ;;
     -*|--*=) # unsupported flags
       echo "Error: Unsupported flag $1" >&2
       exit 1
       ;;
     *) # preserve positional arguments
-      PARAMS="$PARAMS $1"
+      PARAMS+=( $1 )
       shift
       ;;
   esac
 done
 
 # set positional arguments in their proper place
-eval set -- "$PARAMS"
+set -- "${PARAMS[@]}"
+
+# Check # of positional arguments if desired
+#if [[ $# -ne 2 ]]; then
+#  echo "ERROR: two arguments required"
+#  help_message
+#  exit 1
+#fi
