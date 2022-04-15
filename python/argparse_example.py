@@ -1,8 +1,8 @@
-#!/usr/bin/python3
+#!/usr/local/bin/python3
 
 import argparse
 
-def main():
+def parse_arguments():
     # Parse any command line arguments
     parser = argparse.ArgumentParser(description='Description Text')
 
@@ -18,9 +18,17 @@ def main():
             help='Argument with integer parameter')
     parser.add_argument('--reset', action='store_true',
             help='Sets value for reset key to True')
+    parser.add_argument('positional')
+    parser.add_argument('optional', nargs='?', default='default_value')
+
 
     # Parse the arguments and store resulting dict in args
     args = parser.parse_args()
+
+    return args
+
+def main():
+    args = parse_arguments()
 
     if args.reset:
         print('Resetting something...')
