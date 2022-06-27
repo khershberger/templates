@@ -43,6 +43,8 @@ while (( "$#" )); do
 done
 
 # set positional arguments in their proper place
+# Note that first actual argument starts at $2
+# $1 is an empty string
 set -- "${PARAMS[@]}"
 
 # Check # of positional arguments if desired
