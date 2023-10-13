@@ -14,6 +14,12 @@ Examples:
 HELP
 }
 
+# getopts:
+# -o specifies list of short (single-dash) options
+# --long specifies list of long (double-dash) options
+# The number of colons (:) after a short or long option designates how many
+#    parameters are expected after that option
+#
 OPTS=`getopt -o vhns: --long verbose,dry-run,help,stack-size: -n 'parse-options' -- "$@"`
 
 if [ $? != 0 ] ; then echo "Failed parsing options." >&2 ; exit 1 ; fi

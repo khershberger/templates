@@ -36,16 +36,15 @@ while (( "$#" )); do
       exit 1
       ;;
     *) # preserve positional arguments
-      PARAMS+=( $1 )
+      PARAMS+=( "$1" )
       shift
       ;;
   esac
 done
 
 # set positional arguments in their proper place
-# Note that first actual argument starts at $2
-# $1 is an empty string
 set -- "${PARAMS[@]}"
+shift  # Throw away null arg that exists for some reason
 
 # Check # of positional arguments if desired
 #if [[ $# -ne 2 ]]; then
