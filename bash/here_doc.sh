@@ -11,6 +11,7 @@ BASIC
 
 ## Example 2
 # From https://stackoverflow.com/a/1655389
+# Reads multi-line text into single variable
 echo "Example 2:"
 read -r -d '' VAR <<-EOF
     Line1
